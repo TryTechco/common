@@ -19,10 +19,10 @@ registerEnumType(Role, { name: "Role" });
 @ObjectType()
 export class Auth0User {
   @Field(() => String, { nullable: false })
-  user_id: string = "";
+  sub: string = "";
   
   @Field(() => String, { nullable: false })
-  username: string = "";
+  name: string = "";
   
   @Field(() => String, { nullable: true })
   birthday?: string;
