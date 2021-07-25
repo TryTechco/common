@@ -10,6 +10,22 @@ import {
 import { CreateAssetResponse } from "./nft.interface";
 import { Gallery, Artist } from "./user.interface";
 
+interface IAsset {
+  id: string;
+  name: string;
+  created_at: number;
+  owner: Gallery | Artist;
+  price: number;
+  unit: string;
+  externalUrl: string;
+  images?: string[];
+  description: string;
+  isNFT: boolean;
+  NFTLink?: string;
+  NFTInfo?: CreateAssetResponse;
+  inventoryCount: number;
+  sold: boolean;
+}
 
 export enum Unit {
   USD = "usd",
@@ -18,7 +34,7 @@ export enum Unit {
 registerEnumType(Unit, { name: "Unit" });
 
 @ObjectType()
-export class Asset {
+export class Asset implements IAsset {
   @Field(() => String, { nullable: false })
   id: string = "";
   
@@ -37,11 +53,11 @@ export class Asset {
   @Field(() => Unit, { nullable: false })
   unit: Unit = Unit.USD;
   
-  @Field(() => String, { nullable: true })
-  externalUrl?: string;
+  @Field(() => String, { nullable: false })
+  externalUrl: string = "";
   
-  @Field(() => [String], { nullable: false })
-  images: string[] = [];
+  @Field(() => [String], { nullable: true })
+  images?: string[];
   
   @Field(() => String, { nullable: false })
   description: string = "";

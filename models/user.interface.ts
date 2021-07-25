@@ -7,17 +7,26 @@ import { Social } from "./social.interface";
 import { Order } from "./order.interface";
 import { Asset } from "./asset.interface";
 
+export interface IAuth0User {
+  sub: string;
+  name: string;
+  birthday?: string;
+  email?: string;
+  last_ip?: string;
+  picture?: string;
+  phone_number?: string;
+}
 
-export enum Role {
+export enum Auth0RoleName {
   ADMIN = "admin",
   GALLERY = "gallery",
   ARTIST = "artist",
   USER = "user",
 }
-registerEnumType(Role, { name: "Role" });
+registerEnumType(Auth0RoleName, { name: "Auth0RoleName" });
 
 @ObjectType()
-export class Auth0User {
+export class Auth0User implements IAuth0User {
   @Field(() => String, { nullable: false })
   sub: string = "";
   
@@ -43,7 +52,10 @@ export class Auth0User {
 @ObjectType()
 export class User extends Auth0User {
   @Field(() => String, { nullable: false })
-  role: Role = Role.USER;
+  id: string = "";
+
+  @Field(() => String, { nullable: false })
+  role: Auth0RoleName = Auth0RoleName.USER;
   
   @Field(() => String, { nullable: true })
   social?: Social;
@@ -61,7 +73,10 @@ export class User extends Auth0User {
 @ObjectType()
 export class Gallery extends User {
   @Field(() => String, { nullable: false })
-  role: Role = Role.GALLERY;
+  id: string = "";
+
+  @Field(() => String, { nullable: false })
+  role: Auth0RoleName = Auth0RoleName.GALLERY;
   
   @Field(() => [Asset], { nullable: true })
   products?: Asset[];
@@ -73,7 +88,10 @@ export class Gallery extends User {
 @ObjectType()
 export class Artist extends User {
   @Field(() => String, { nullable: false })
-  role: Role = Role.ARTIST;
+  id: string = "";
+  
+  @Field(() => String, { nullable: false })
+  role: Auth0RoleName = Auth0RoleName.ARTIST;
   
   @Field(() => [Asset], { nullable: true })
   collection?: Asset[];

@@ -3,9 +3,15 @@ import {
   Field,
 } from "type-graphql";
 
+interface ISocial {
+  instagram?: string;
+  twitter?: string;
+  facebook?: string;
+  link?: string;
+}
 
 @ObjectType()
-export class Social {
+export class Social implements ISocial {
   @Field(() => String, { nullable: false })
   instagram?: string;
   
@@ -18,12 +24,3 @@ export class Social {
   @Field(() => String, { nullable: false })
   link?: string;
 }
-
-
-// ======Reference=====
-// export interface Social {
-//   instagram?: string;
-//   twitter?: string;
-//   facebook?: string;
-//   link?: string;
-// }

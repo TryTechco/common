@@ -4,9 +4,16 @@ import {
   ID,
 } from "type-graphql";
 
+interface IBlog {
+  id: string;
+  title: string;
+  createAt: number;
+  banner: string;
+  content: string;
+}
 
 @ObjectType()
-export class Blog {
+export class Blog implements IBlog {
   @Field(() => String, { nullable: false })
   id: string = "";
   
@@ -22,13 +29,3 @@ export class Blog {
   @Field(() => String, { nullable: false })
   content: string = "";
 }
-
-
-// ======Reference=====
-// export interface Blog {
-//   id: string;
-//   title: string;
-//   createAt: number;
-//   banner: string;
-//   content: string;
-// }

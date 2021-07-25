@@ -8,6 +8,22 @@ import {
 import { User } from "./user.interface";
 import { Asset, Unit } from "./asset.interface";
 
+interface IOrder {
+  id: string;
+  created_at: number;
+  buyer: User;
+  address: string;
+  shippingFee: number;
+  shippingFeeUnit: string;
+  totalPrice: number;
+  totalPriceUnit: string;
+  products: Asset[];
+  deliveryMethod: DeliveryMethod;
+  paymentMethod: PaymentMethod;
+  deliveryStatus: DeliveryStatus;
+  paymentStatus: PaymentStatus;
+  discount: number;
+}
 
 export enum DeliveryStatus {
   PROCESSING_ORDER = "processing_order",
@@ -35,7 +51,7 @@ registerEnumType(DeliveryMethod, { name: "DeliveryMethod" });
 registerEnumType(PaymentMethod, { name: "PaymentMethod" });
 
 @ObjectType()
-export class Order {
+export class Order implements IOrder {
   @Field(() => String, { nullable: false })
   id: string = "";
   
