@@ -94,7 +94,7 @@ export class Artist extends User {
   role: Auth0RoleName = Auth0RoleName.ARTIST;
   
   @Field(() => [Asset], { nullable: true })
-  collection?: Asset[];
+  collections?: Asset[];
   
   @Field(() => Gallery, { nullable: true })
   boss?: Gallery;

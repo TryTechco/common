@@ -6,6 +6,7 @@ import {
   ID,
   Int,
   Float,
+  createUnionType,
 } from "type-graphql";
 import { CreateAssetResponse } from "./nft.interface";
 import { Gallery, Artist } from "./user.interface";
@@ -14,7 +15,7 @@ interface IAsset {
   id: string;
   name: string;
   created_at: number;
-  owner: Gallery | Artist;
+  owner: Gallery | Artist | undefined;
   price: number;
   unit: string;
   externalUrl: string;
@@ -33,6 +34,20 @@ export enum Unit {
 }
 registerEnumType(Unit, { name: "Unit" });
 
+export const OwnerUnion = createUnionType({
+  name: "owner",
+  types: () => [Gallery, Artist] as const,
+  resolveType: value => {
+    if ("products" in value) {
+      return Gallery; 
+    }
+    if ("collections" in value) {
+      return Artist; 
+    }
+    return undefined;
+  },
+});
+
 @ObjectType()
 export class Asset implements IAsset {
   @Field(() => String, { nullable: false })
@@ -44,8 +59,8 @@ export class Asset implements IAsset {
   @Field(() => ID, { nullable: false })
   created_at: number = Date.now();
   
-  @Field({ nullable: false })
-  owner: Gallery | Artist = {} as Gallery;
+  @Field(() => OwnerUnion, { nullable: false })
+  owner: typeof OwnerUnion = {} as Gallery;
   
   @Field(() => Float, { nullable: false })
   price: number = 0;
