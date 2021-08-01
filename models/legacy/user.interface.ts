@@ -3,7 +3,7 @@ import {
   Field,
   registerEnumType,
 } from "type-graphql";
-import { Social } from "./social.interface";
+import { Social } from "../social.interface";
 import { Order } from "./order.interface";
 import { Asset } from "./asset.interface";
 
