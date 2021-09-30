@@ -1,8 +1,4 @@
-import {
-  ObjectType,
-  Field,
-  InputType,
-} from "type-graphql";
+import { ObjectType, Field, InputType } from "type-graphql";
 import { Social, SocialInput } from "./social.interface";
 
 export enum Auth0RoleName {
@@ -39,10 +35,10 @@ export class BaseRole implements IAuth0User, IRoleInfo {
 
   @Field(() => String, { nullable: false })
   name: string = "";
-  
+
   @Field(() => Social, { nullable: true })
   social?: Social;
-  
+
   @Field(() => String, { nullable: true })
   description?: string;
 
@@ -65,10 +61,10 @@ export class Artist extends BaseRole {
 export class CreateOrUpdateGalleryInput {
   @Field(() => String, { nullable: false })
   name?: string;
-  
+
   @Field(() => SocialInput, { nullable: true })
   social?: SocialInput;
-  
+
   @Field(() => String, { nullable: false })
   description?: string;
 
@@ -80,10 +76,10 @@ export class CreateOrUpdateGalleryInput {
 export class CreateOrUpdateArtistInput {
   @Field(() => String, { nullable: false })
   name?: string;
-  
+
   @Field(() => SocialInput, { nullable: true })
   social?: SocialInput;
-  
+
   @Field(() => String, { nullable: false })
   description?: string;
 
@@ -98,8 +94,7 @@ export class CreateOrUpdateArtistInput {
 export class BelongsToIdentifier implements IBelongsToIdentifier {
   @Field(() => String, { nullable: false })
   sub?: string;
-  
+
   @Field(() => String, { nullable: false })
   name?: string;
 }
-
