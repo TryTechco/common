@@ -54,7 +54,7 @@ export class Artist extends BaseRole {
   @Field(() => [Gallery], { nullable: true })
   belongsTo?: Gallery;
 
-  belongsToIdentifier: IBelongsToIdentifier[] = [];
+  belongsToGalleryIdx: string[] = [];
 }
 
 @InputType()
@@ -86,8 +86,8 @@ export class CreateOrUpdateArtistInput {
   @Field(() => [String], { nullable: true })
   images?: string[];
 
-  @Field(() => [BelongsToIdentifier], { nullable: true })
-  belongsToIdentifier?: BelongsToIdentifier[];
+  @Field(() => [String], { nullable: true })
+  belongsToGalleryIdx?: string[];
 }
 
 @InputType()

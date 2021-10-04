@@ -1,8 +1,4 @@
-import {
-  ObjectType,
-  Field,
-  InputType,
-} from "type-graphql";
+import { ObjectType, Field, InputType } from "type-graphql";
 
 interface ISocial {
   instagram?: string;
@@ -15,10 +11,10 @@ interface ISocial {
 export class Social implements ISocial {
   @Field(() => String, { nullable: true })
   instagram?: string;
-  
+
   @Field(() => String, { nullable: true })
-  twitter?: string; 
-  
+  twitter?: string;
+
   @Field(() => String, { nullable: true })
   facebook?: string;
 
@@ -30,10 +26,10 @@ export class Social implements ISocial {
 export class SocialInput implements Partial<Social> {
   @Field(() => String, { nullable: true })
   instagram?: string;
-  
+
   @Field(() => String, { nullable: true })
-  twitter?: string; 
-  
+  twitter?: string;
+
   @Field(() => String, { nullable: true })
   facebook?: string;
 

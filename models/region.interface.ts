@@ -1,7 +1,4 @@
-import {
-  ObjectType,
-  Field,
-} from "type-graphql";
+import { ObjectType, Field } from "type-graphql";
 
 interface IRegion {
   ip?: string; // "73.225.187.33";
