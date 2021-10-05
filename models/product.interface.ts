@@ -4,6 +4,8 @@ export interface IProductInfo {
   id: string;
   name: string;
   owner: string;
+  artist: string;
+  gallery?: string;
   description?: string;
   view_count?: number;
 }
@@ -19,6 +21,12 @@ export class Product implements IProductInfo {
   @Field(() => String, { nullable: false })
   owner: string = "";
 
+  @Field(() => String, { nullable: false })
+  artist: string = "";
+
+  @Field(() => String, { nullable: false })
+  gallery?: string = "";
+
   @Field(() => String, { nullable: true })
   description?: string;
 
@@ -30,6 +38,12 @@ export class Product implements IProductInfo {
 export class CreateOrUpdateProductInput {
   @Field(() => String, { nullable: false })
   name?: string;
+
+  @Field(() => String, { nullable: false })
+  artist?: string;
+
+  @Field(() => String, { nullable: false })
+  gallery?: string;
 
   @Field(() => String, { nullable: false })
   description?: string;
