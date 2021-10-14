@@ -52,13 +52,16 @@ export class Gallery extends BaseRole {}
 @ObjectType()
 export class Artist extends BaseRole {
   @Field(() => [Gallery], { nullable: true })
-  belongsTo?: Gallery;
+  belongs_to?: Gallery;
 
-  belongsToGalleryIdx: string[] = [];
+  belongs_to_gallery_idx: string[] = [];
 }
 
 @InputType()
 export class CreateOrUpdateGalleryInput {
+  @Field(() => String, { nullable: false })
+  id?: string;
+
   @Field(() => String, { nullable: false })
   name?: string;
 
@@ -75,6 +78,9 @@ export class CreateOrUpdateGalleryInput {
 @InputType()
 export class CreateOrUpdateArtistInput {
   @Field(() => String, { nullable: false })
+  id?: string;
+
+  @Field(() => String, { nullable: false })
   name?: string;
 
   @Field(() => SocialInput, { nullable: true })
@@ -87,7 +93,7 @@ export class CreateOrUpdateArtistInput {
   images?: string[];
 
   @Field(() => [String], { nullable: true })
-  belongsToGalleryIdx?: string[];
+  belongs_to_gallery_idx?: string[];
 }
 
 @InputType()

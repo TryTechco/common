@@ -37,7 +37,13 @@ export class Product implements IProductInfo {
 @InputType()
 export class CreateOrUpdateProductInput {
   @Field(() => String, { nullable: false })
+  id?: string;
+
+  @Field(() => String, { nullable: false })
   name?: string;
+
+  @Field(() => String, { nullable: false })
+  owner?: string;
 
   @Field(() => String, { nullable: false })
   artist?: string;
