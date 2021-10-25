@@ -30,7 +30,7 @@ export class Product implements IProductInfo {
   @Field(() => String, { nullable: true })
   description?: string;
 
-  @Field(() => [Int], { nullable: true })
+  @Field(() => Int, { nullable: true })
   view_count?: number = 0;
 }
 
