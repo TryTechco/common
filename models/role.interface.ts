@@ -52,7 +52,7 @@ export class Gallery extends BaseRole {}
 @ObjectType()
 export class Artist extends BaseRole {
   @Field(() => [Gallery], { nullable: true })
-  belongs_to?: Gallery;
+  belongs_to?: Gallery[];
 
   belongs_to_gallery_idx: string[] = [];
 }
