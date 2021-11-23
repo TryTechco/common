@@ -106,19 +106,10 @@ export class BelongsToIdentifier implements IBelongsToIdentifier {
 }
 
 @ObjectType()
-export class TopSoldArtistInfo {
+export class TopArtistInfo {
   @Field(() => String, { nullable: false })
   artist?: string;
 
   @Field(() => Int, { nullable: false })
-  sold?: number;
-}
-
-@ObjectType()
-export class TopViewArtistInfo {
-  @Field(() => String, { nullable: false })
-  artist?: string;
-
-  @Field(() => Int, { nullable: false })
-  view?: number;
+  count?: number;
 }
