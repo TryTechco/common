@@ -1,4 +1,4 @@
-import { ObjectType, Field, InputType } from "type-graphql";
+import { ObjectType, Field, InputType, Int } from "type-graphql";
 import { Social, SocialInput } from "./social.interface";
 
 export enum Auth0RoleName {
@@ -103,4 +103,22 @@ export class BelongsToIdentifier implements IBelongsToIdentifier {
 
   @Field(() => String, { nullable: false })
   name?: string;
+}
+
+@ObjectType()
+export class TopSoldArtistInfo {
+  @Field(() => String, { nullable: false })
+  artist?: string;
+
+  @Field(() => Int, { nullable: false })
+  sold?: number;
+}
+
+@ObjectType()
+export class TopViewArtistInfo {
+  @Field(() => String, { nullable: false })
+  artist?: string;
+
+  @Field(() => Int, { nullable: false })
+  view?: number;
 }

@@ -8,6 +8,8 @@ export interface IProductInfo {
   gallery?: string;
   description?: string;
   view_count?: number;
+  like_count?: number;
+  sold_count?: number;
 }
 
 @ObjectType()
@@ -32,6 +34,12 @@ export class Product implements IProductInfo {
 
   @Field(() => Int, { nullable: true })
   view_count?: number = 0;
+
+  @Field(() => Int, { nullable: true })
+  like_count?: number = 0;
+
+  @Field(() => Int, { nullable: true })
+  sold_count?: number = 0;
 }
 
 @InputType()
