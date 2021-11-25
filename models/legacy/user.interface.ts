@@ -1,8 +1,4 @@
-import {
-  ObjectType,
-  Field,
-  registerEnumType,
-} from "type-graphql";
+import { ObjectType, Field, registerEnumType } from "type-graphql";
 import { Social } from "../social.interface";
 import { Order } from "./order.interface";
 import { Asset } from "./asset.interface";
@@ -29,22 +25,22 @@ registerEnumType(Auth0RoleName, { name: "Auth0RoleName" });
 export class Auth0User implements IAuth0User {
   @Field(() => String, { nullable: false })
   sub: string = "";
-  
+
   @Field(() => String, { nullable: false })
   name: string = "";
-  
+
   @Field(() => String, { nullable: true })
   birthday?: string;
-  
+
   @Field(() => String, { nullable: true })
   email?: string;
-  
+
   @Field(() => String, { nullable: true })
   last_ip?: string;
-  
+
   @Field(() => String, { nullable: true })
   picture?: string;
-  
+
   @Field(() => String, { nullable: true })
   phone_number?: string;
 }
@@ -56,16 +52,16 @@ export class User extends Auth0User {
 
   @Field(() => String, { nullable: false })
   role: Auth0RoleName = Auth0RoleName.USER;
-  
+
   @Field(() => String, { nullable: true })
   social?: Social;
-  
+
   @Field(() => String, { nullable: true })
   wallet_address?: string;
-  
+
   @Field(() => [Order], { nullable: true })
   orders?: Order[];
-  
+
   @Field(() => String, { nullable: true })
   address?: string;
 }
@@ -77,10 +73,10 @@ export class Gallery extends User {
 
   @Field(() => String, { nullable: false })
   role: Auth0RoleName = Auth0RoleName.GALLERY;
-  
+
   @Field(() => [Asset], { nullable: true })
   products?: Asset[];
-  
+
   @Field(() => [Artist], { nullable: true })
   artists?: Artist[];
 }
@@ -89,17 +85,16 @@ export class Gallery extends User {
 export class Artist extends User {
   @Field(() => String, { nullable: false })
   id: string = "";
-  
+
   @Field(() => String, { nullable: false })
   role: Auth0RoleName = Auth0RoleName.ARTIST;
-  
+
   @Field(() => [Asset], { nullable: true })
   collections?: Asset[];
-  
+
   @Field(() => Gallery, { nullable: true })
   boss?: Gallery;
 }
-
 
 // ======Reference=====
 // export type Role = "admin" | "gallery" | "artist" | "user";
@@ -129,4 +124,3 @@ export class Artist extends User {
 //   collection?: Asset[];
 //   boss?: Gallery;
 // }
-

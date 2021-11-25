@@ -12,8 +12,8 @@ export class Customer extends BaseRole {
   @Field(() => Address, { nullable: true })
   billing_address?: Address;
 
-  @Field(() => [String], { nullable: true })
-  payment?: String[];
+  @Field(() => [Payment], { nullable: true })
+  payment?: Payment[];
 }
 
 @ObjectType()
@@ -38,6 +38,18 @@ export class Address {
 
   @Field(() => String, { nullable: true })
   countryCode?: string;
+}
+
+@ObjectType()
+export class Payment {
+  @Field(() => String, { nullable: true })
+  cardName?: string;
+
+  @Field(() => String, { nullable: true })
+  cardToken?: string;
+
+  @Field(() => String, { nullable: true })
+  lastFour?: string;
 }
 
 @InputType()
@@ -66,8 +78,8 @@ export class CreateOrUpdateCustomerInput {
   @Field(() => AddressInput, { nullable: true })
   billing_address?: AddressInput;
 
-  @Field(() => [String], { nullable: true })
-  payment?: String[];
+  @Field(() => [PaymentInput], { nullable: true })
+  payment?: PaymentInput[];
 }
 
 @InputType()
@@ -92,4 +104,16 @@ export class AddressInput {
 
   @Field(() => String, { nullable: true })
   countryCode?: string;
+}
+
+@InputType()
+export class PaymentInput {
+  @Field(() => String, { nullable: true })
+  cardName?: string;
+
+  @Field(() => String, { nullable: true })
+  cardToken?: string;
+
+  @Field(() => String, { nullable: true })
+  lastFour?: string;
 }
