@@ -46,6 +46,9 @@ export class Payment {
   cardName?: string;
 
   @Field(() => String, { nullable: true })
+  cardKey?: string;
+
+  @Field(() => String, { nullable: true })
   cardToken?: string;
 
   @Field(() => String, { nullable: true })
@@ -110,6 +113,9 @@ export class AddressInput {
 export class PaymentInput {
   @Field(() => String, { nullable: true })
   cardName?: string;
+
+  @Field(() => String, { nullable: true })
+  cardKey?: string;
 
   @Field(() => String, { nullable: true })
   cardToken?: string;
