@@ -14,6 +14,9 @@ export class Customer extends BaseRole {
 
   @Field(() => [Payment], { nullable: true })
   payment?: Payment[];
+
+  @Field(() => [Credential], { nullable: true })
+  credential?: Credential[];
 }
 
 @ObjectType()
@@ -46,13 +49,19 @@ export class Payment {
   cardName?: string;
 
   @Field(() => String, { nullable: true })
-  cardKey?: string;
-
-  @Field(() => String, { nullable: true })
   cardToken?: string;
 
   @Field(() => String, { nullable: true })
   lastFour?: string;
+}
+
+@ObjectType()
+export class Credential {
+  @Field(() => String, { nullable: true })
+  cardToken?: string;
+
+  @Field(() => String, { nullable: true })
+  cardKey?: string;
 }
 
 @InputType()
@@ -122,4 +131,13 @@ export class PaymentInput {
 
   @Field(() => String, { nullable: true })
   lastFour?: string;
+}
+
+@InputType()
+export class CredentialInput {
+  @Field(() => String, { nullable: true })
+  cardToken?: string;
+
+  @Field(() => String, { nullable: true })
+  cardKey?: string;
 }
