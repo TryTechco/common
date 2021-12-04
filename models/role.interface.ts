@@ -1,5 +1,6 @@
 import { ObjectType, Field, InputType, Int } from "type-graphql";
 import { Social, SocialInput } from "./social.interface";
+import { CroppedImage, CroppedImageInput } from "./image.interface";
 
 export enum Auth0RoleName {
   ADMIN = "admin",
@@ -44,6 +45,9 @@ export class BaseRole implements IAuth0User, IRoleInfo {
 
   @Field(() => [String], { nullable: true })
   images?: string[];
+
+  @Field(() => CroppedImage, { nullable: true })
+  image_cropped?: CroppedImage;
 }
 
 @ObjectType()
@@ -73,6 +77,9 @@ export class CreateOrUpdateGalleryInput {
 
   @Field(() => [String], { nullable: true })
   images?: string[];
+
+  @Field(() => CroppedImageInput, { nullable: true })
+  image_cropped?: CroppedImageInput;
 }
 
 @InputType()
@@ -91,6 +98,9 @@ export class CreateOrUpdateArtistInput {
 
   @Field(() => [String], { nullable: true })
   images?: string[];
+
+  @Field(() => CroppedImageInput, { nullable: true })
+  image_cropped?: CroppedImageInput;
 
   @Field(() => [String], { nullable: true })
   belongs_to_gallery_idx?: string[];
