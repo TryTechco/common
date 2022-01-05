@@ -123,3 +123,12 @@ export class TopArtistInfo {
   @Field(() => Int, { nullable: false })
   count?: number;
 }
+
+@ObjectType()
+export class ArtistSearchResult {
+  @Field(() => [Artist])
+  artists: Artist[] = [];
+
+  @Field(() => Int)
+  totalCount: number = 0;
+}
