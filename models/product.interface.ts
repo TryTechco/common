@@ -1,5 +1,10 @@
 import { ObjectType, Field, InputType, Int } from "type-graphql";
 
+export interface IOrderInfo {
+  id: string;
+  number: number;
+}
+
 export interface IProductInfo {
   id: string;
   name: string;
@@ -10,6 +15,16 @@ export interface IProductInfo {
   view_count?: number;
   like_count?: number;
   sold_count?: number;
+  sold_order?: IOrderInfo[];
+}
+
+@ObjectType()
+export class Order implements IOrderInfo {
+  @Field(() => String, { nullable: false })
+  id: string = "";
+
+  @Field(() => Int, { nullable: false })
+  number: number = 0;
 }
 
 @ObjectType()
@@ -40,6 +55,9 @@ export class Product implements IProductInfo {
 
   @Field(() => Int, { nullable: true })
   sold_count?: number = 0;
+
+  @Field(() => [Order], { nullable: true })
+  sold_order?: Order[] = [];
 }
 
 @InputType()
