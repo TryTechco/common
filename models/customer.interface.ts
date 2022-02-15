@@ -53,6 +53,12 @@ export class Payment {
 
   @Field(() => String, { nullable: true })
   lastFour?: string;
+
+  @Field(() => String, { nullable: true })
+  orderId?: string;
+
+  @Field(() => Boolean, { nullable: true })
+  complete?: boolean = false;
 }
 
 @ObjectType()
@@ -131,6 +137,12 @@ export class PaymentInput {
 
   @Field(() => String, { nullable: true })
   lastFour?: string;
+
+  @Field(() => String, { nullable: true })
+  orderId?: string;
+
+  @Field(() => Boolean, { nullable: true })
+  complete?: boolean;
 }
 
 @InputType()
